@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
 import { StatsRouter } from './routes/stats.js';
+import dotenv from 'dotenv';
 
 dotenv.config();
 

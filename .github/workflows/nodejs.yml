@@ -8,10 +8,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      # Setup Node.js environment with Volta and install pnpm
       - uses: volta-cli/action@v1
-      - run: npm ci --no-audit
-      - run: npm run lint --if-present
-      - run: npm test
-      - run: npm run build --if-present
+      - run: volta install pnpm
+
+      # Install dependencies using pnpm
+      - run: pnpm install --frozen-lockfile
+      
+      # Run lint, tests, and build
+      - run: pnpm run lint --if-present
+      - run: pnpm test
+      - run: pnpm run build --if-present
         env:
           CI: true

@@ -1,7 +1,15 @@
 {
-  "user": "1",
-  "game": "Carcassonne",
-  "result": "Winner",
-  "points": 23,
-  "challengers": ["2", "10"]
+  "game": "e68c7b82-7bcb-426b-aa50-bfb72bc4f4c4",
+  "date": "2024-02-27",
+  "stats": [
+    {
+      "playerId": "cc9c7139-9f57-4c73-b87e-78c1e38f4a1d",
+      "result": "WIN"
+    },
+    {
+      "playerId": "449a393f-fe12-4036-b947-98318e43a89e",
+      "result": "LOSS"
+    }
+  ],
+  "photos": []
 }
