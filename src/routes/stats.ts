@@ -1,20 +1,21 @@
 import { Router, Request, Response } from 'express';
 import statsMock from '../models/stats.json' with { type: 'json' };
-import { StatsService } from '../services/statsService';
+import { initDb } from '../database/db.js';
+import { StatsService } from '../services/statsService.js';
 
-const StatsRouter = Router();
+const statsRouter = Router();
 const db = await initDb();
 
-const stats = new StatsService(db);
+const statsService = new StatsService(db);
 
-StatsRouter.get('/', (_req: Request, res: Response) => {
+statsRouter.get('/', (_req: Request, res: Response) => {
   res.send(statsMock);
 });
 
-StatsRouter.post('/', (req: Request, res: Response) => {
-  const { body } = req;
+statsRouter.post('/', async (req: Request, res: Response) => {
+  await statsService.create(req.body);
 
   res.send('Stats added');
 });
 
-export { StatsRouter };
+export { statsRouter };

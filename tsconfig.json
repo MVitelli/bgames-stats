@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "lib": ["ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "rootDir": ".",
     "outDir": "build",
     "allowSyntheticDefaultImports": true,
@@ -18,8 +17,11 @@
     "noImplicitAny": false,
     "noImplicitThis": false,
     "strictNullChecks": false,
-    "resolveJsonModule": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "resolveJsonModule": true, // Allow importing JSON files
+    "lib": ["es2022"], // Specify a set of built-in API declarations to be included in the compilation
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

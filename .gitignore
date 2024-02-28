@@ -30,3 +30,6 @@ build/
 
 # Environment
 .env
+
+# Database
+src/database/*.db
