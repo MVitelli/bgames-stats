@@ -1,15 +1,17 @@
 import { Router, Request, Response } from 'express';
-import statsMock from '../models/stats.json' with { type: 'json' };
 import { initDb } from '../database/db.js';
-import { StatsService } from '../services/statsService.js';
+import { StatsService } from '../services/stats.service.js';
+// import statsMock from '../models/stats.json' with { type: 'json' };
 
 const statsRouter = Router();
 const db = await initDb();
 
 const statsService = new StatsService(db);
 
-statsRouter.get('/', (_req: Request, res: Response) => {
-  res.send(statsMock);
+statsRouter.get('/', async (_req: Request, res: Response) => {
+  const stats = await statsService.all();
+
+  res.send(stats);
 });
 
 statsRouter.post('/', async (req: Request, res: Response) => {

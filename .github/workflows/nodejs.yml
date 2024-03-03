@@ -8,14 +8,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      
+
       # Setup Node.js environment with Volta and install pnpm
       - uses: volta-cli/action@v1
+      - run: volta install node
       - run: volta install pnpm
 
       # Install dependencies using pnpm
       - run: pnpm install --frozen-lockfile
-      
+
       # Run lint, tests, and build
       - run: pnpm run lint --if-present
       - run: pnpm test

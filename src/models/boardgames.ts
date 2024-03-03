@@ -13,6 +13,7 @@ export class Game {
 }
 
 export class MatchStat {
+  id: number;
   game: Game;
   playersResults: PlayerStat[];
   photos: string[];
@@ -28,11 +29,22 @@ export class PlayerStat {
   result: GameResult;
 }
 
-export class Player {
-  id: string;
+export class PlayerDto {
   alias: string;
   avatar?: string;
-  favoriteGame: Game;
+  favoriteGameId?: string;
+}
+
+export class Player {
+  id: number;
+  alias: string;
+  avatar?: string;
+  favoriteGame?: Game;
+}
+
+export class GameResultDetails {
+  result: GameResult;
+  score?: number;
 }
 
 export enum GameResult {
