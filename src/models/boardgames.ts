@@ -1,26 +1,27 @@
 export class MatchStatDto {
-  gameId: string;
+  gameId: number;
   date: Date;
   stats: PlayerStatDto[];
   photos: string[];
 }
 
 export class Game {
-  id: string;
+  id: number;
   name: string;
-  weight: number;
+  weight?: number;
   image: string;
 }
 
 export class MatchStat {
   id: number;
+  date: Date;
   game: Game;
   playersResults: PlayerStat[];
   photos: string[];
 }
 
 export class PlayerStatDto {
-  playerId: string;
+  playerId: number;
   result: GameResult;
 }
 

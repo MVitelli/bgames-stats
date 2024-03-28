@@ -19,8 +19,7 @@
     "strictNullChecks": false,
     "esModuleInterop": true,
     "baseUrl": ".",
-    "resolveJsonModule": true, // Allow importing JSON files
-    "lib": ["es2022"], // Specify a set of built-in API declarations to be included in the compilation
+    "resolveJsonModule": true,
     "skipLibCheck": true
   },
   "include": ["src/**/*"],
