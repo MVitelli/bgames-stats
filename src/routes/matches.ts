@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
-import { initDb } from '../database/db.js';
-import { MatchesService } from '../services/matches.service.js';
+import { initDb } from '../database/db';
+import { MatchesService } from '../services/matches.service';
 // import statsMock from '../models/stats.json' with { type: 'json' };
 
 const matches: Router = Router();

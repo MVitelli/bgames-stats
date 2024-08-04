@@ -4,7 +4,7 @@ import {
   MatchStat,
   MatchStatDto,
   PlayerStatDto,
-} from '../models/boardgames.js';
+} from '../models/boardgames';
 
 export class MatchesService {
   constructor(private db: Database) {}
