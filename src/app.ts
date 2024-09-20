@@ -1,9 +1,10 @@
+import 'dotenv/config';
 import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
-//TODO: Find a way to remove extensions
 import { matches } from './routes/matches.js';
+import { photos } from './routes/photos.js';
 
-dotenv.config();
+// TODO: handle async errors
+// TODO: use knex
 
 const app: Express = express();
 app.use(express.json());
@@ -15,6 +16,7 @@ app.get('/', (_req: Request, res: Response) => {
 });
 
 app.use('/api/matches', matches);
+app.use('/api/photos', photos);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);

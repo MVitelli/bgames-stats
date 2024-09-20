@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    ports:
+      - '4566:4566' # Puerto principal de LocalStack
+      - '4571:4571' # Puerto opcional para APIs específicas
+    environment:
+      - SERVICES=s3
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - DEFAULT_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+    volumes:
+      - './localstack:/tmp/localstack'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:4566/health']
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  init-localstack:
+    image: amazon/aws-cli
+    depends_on:
+      localstack:
+        condition: service_healthy
+    entrypoint: ['./init.sh']
+    volumes:
+      - './init.sh:/init.sh'
+      - './localstack:/tmp/localstack'
+    environment:
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=us-east-1
+    command: ['bash', '/init.sh']

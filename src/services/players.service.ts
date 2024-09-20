@@ -1,5 +1,5 @@
 import { Database } from 'sqlite';
-import { Player, PlayerDto } from 'src/models/boardgames';
+import { PlayerDto, Player } from '../models/boardgames.js';
 
 export class PlayersService {
   constructor(private db: Database) {}
