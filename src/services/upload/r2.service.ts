@@ -34,29 +34,35 @@ export class R2Service implements IUploadService {
     });
   }
 
-  async generateSignedUrl(
-    key: string,
-    expiresIn: number = 300,
-  ): Promise<string> {
-    const command = new GetObjectCommand({
-      Bucket: this.bucketName,
-      Key: key,
-    });
+  async generateSignedUrl(key: string, expiresIn: number = 300) {
+    try {
+      const command = new GetObjectCommand({
+        Bucket: this.bucketName,
+        Key: key,
+      });
 
-    const signedUrl = await getSignedUrl(this.s3Client, command, { expiresIn });
-    return signedUrl;
+      const signedUrl = await getSignedUrl(this.s3Client, command, {
+        expiresIn,
+      });
+      return signedUrl;
+    } catch (error) {
+      console.error('Error generating signed URL:', error);
+      throw error;
+    }
   }
 
-  async uploadObject(
-    key: string,
-    data: Buffer | Uint8Array | Blob,
-  ): Promise<void> {
-    const command = new PutObjectCommand({
-      Bucket: this.bucketName,
-      Key: key,
-      Body: data,
-    });
+  async uploadObject(key: string, data: Buffer | Uint8Array | Blob) {
+    try {
+      const command = new PutObjectCommand({
+        Bucket: this.bucketName,
+        Key: key,
+        Body: data,
+      });
 
-    await this.s3Client.send(command);
+      await this.s3Client.send(command);
+    } catch (error) {
+      console.error('Error uploading object:', error);
+      throw error;
+    }
   }
 }

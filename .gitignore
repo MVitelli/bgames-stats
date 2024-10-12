@@ -33,3 +33,6 @@ build/
 
 # Database
 src/database/*.db
+
+# Localstack
+localstack
