@@ -35,3 +35,34 @@ services:
       AWS_SECRET_ACCESS_KEY: test
       AWS_REGION: us-east-1
     command: []
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:21.1.1
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/bgames
+      KC_DB_USERNAME: bgames
+      KC_DB_PASSWORD: burgundy
+      KC_HOSTNAME: localhost
+      KC_HTTP_ENABLED: true
+      KC_HTTPS_ENABLED: false
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
+    command:
+      - start-dev
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: bgames
+      POSTGRES_USER: bgames
+      POSTGRES_PASSWORD: burgundy
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

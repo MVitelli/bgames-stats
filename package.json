@@ -1,23 +1,25 @@
 {
-  "name": "node-typescript-boilerplate",
+  "name": "bgames-backend",
   "version": "0.0.0",
   "description": "Minimalistic boilerplate to quick-start Node.js development in TypeScript.",
   "type": "module",
   "engines": {
-    "node": ">= 20.9 < 21"
+    "node": ">= 20.9 < 23"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.654.0",
     "@aws-sdk/s3-request-presigner": "^3.654.0",
-    "dotenv": "^16.4.5",
-    "express": "^4.18.2",
+    "express": "^5.0.1",
+    "express-session": "^1.18.1",
+    "keycloak-connect": "^26.0.5",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
+    "@types/express": "^5.0.0",
+    "@types/express-session": "^1.18.0",
     "@types/jest": "~29.5",
-    "@types/node": "~20",
+    "@types/node": "^22.8.7",
     "@typescript-eslint/eslint-plugin": "~6.15",
     "@typescript-eslint/parser": "~6.15",
     "eslint": "~8.56",
@@ -32,8 +34,8 @@
     "typescript": "~5.3.3"
   },
   "scripts": {
-    "start": "node build/src/app.js",
-    "dev": "tsx watch src/app.ts",
+    "start": "node build/src/bootstrap.js",
+    "dev": "tsx watch src/bootstrap.ts",
     "clean": "rimraf coverage build tmp",
     "prebuild": "pnpm run lint",
     "build": "rimraf build && tsc -p tsconfig.json",
@@ -46,13 +48,8 @@
     "migrate": "pnpm sqlite3 src/database/bgames.db < src/database/migrations/001-initial-schema.sql",
     "prepare": "husky"
   },
-  "author": "Jakub Synowiec <jsynowiec@users.noreply.github.com>",
-  "license": "Apache-2.0",
   "lint-staged": {
     "*.{js,ts}": "eslint --cache --fix --max-warnings 0",
     "*.{json,md,prisma,yml}": "prettier --write"
-  },
-  "volta": {
-    "node": "20.10.0"
   }
 }
